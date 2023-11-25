@@ -4,13 +4,16 @@ import { Neo4jAdapter } from '@auth/neo4j-adapter';
 import { getNeo4jSession, read, write } from '../utils/neo4j';
 import { v4 as uuidv4 } from 'uuid';
 
-// type User = {
-//   firstName: string
-//   lastName: string
-//   username: string
-//   email: string
-//   passwordHash: string
-// };
+type User = {
+  firstName: string
+  lastName: string
+  email: string
+  phoneNumber: string
+  password: string
+  points: number
+  streak: number
+  passedDailyMission: boolean
+};
 
 const neo4jUserAdapter = Neo4jAdapter(getNeo4jSession());
 
