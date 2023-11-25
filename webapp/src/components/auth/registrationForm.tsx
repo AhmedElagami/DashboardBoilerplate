@@ -6,133 +6,92 @@ import { FormEvent, useState } from 'react';
 import {z} from "Zod";
 
 // Define a Zod schema for user registration
-const registrationSchema = z.object({
-  firstName: z.string().min(4, 'firstName must be at least 4 characters'),
-  lastName: z.string().min(4, 'lastName must be at least 4 characters'),
+export const registrationSchema = z.object({
   email: z.string().email('Invalid email address'),
   password: z.string().min(8, 'Password must be at least 8 characters'),
 });
 
-
 export default function Form() {
+    // ! if the registration is successful, route to home directory
     const router = useRouter();
 
-    const [formData, setFormData] = useState({
-        firstName: '',
-        lastName: '',
-        email: '',
-        password: '',
-    });
-
-    const [validationErrors, setValidationErrors] = useState<z.infer<typeof registrationSchema>>(
-        registrationSchema.parse({}) // Initialize with an empty object of the same shape
-    );
-
+    // ! if there is a session already, then redirect to the home page
     const { data: session, status } = useSession()
 
     if (status === "authenticated") {
         router.push("/")
     }
 
-    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        const { name, value } = e.target;
-        setFormData((prevData) => ({
-        ...prevData,
-        [name]: value,
-        }));
-    };
+    // ! setting up form Data as state for the component
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
 
+    // ! we want to validate the form and show the errors when data change
+    // * setting up Zod state
+    const [fieldErrors, setFieldErrors] = useState(
+        {
+          'email': [],
+          'password': []
+        } // Initialize with an empty object of the same shape
+    );
+    const [formError, setFormError] = useState("");
+
+    // ! when the form is submitted, first validate the data, post to api, and check for errors
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
 try {
     // Validate the form data
-    const validatedData = registrationSchema.parse(formData);
+    const validatedData = registrationSchema.parse({email, password});
     // ! send a request to create the user
-    const response = await fetch(`/api/auth/register`, {
-      method: 'POST',
-      body: JSON.stringify({
-        email: formData['email'],
-        password: formData['password'],
-        firstName: formData['firstName'],
-        lastName: formData['lastName'],
-      }),
-    });
+      const response = await fetch(`/api/auth/register`, {
+        method: 'POST',
+        body: JSON.stringify({
+          email,
+          password
+        }),
+      });
 
-    // if (response) {
-    //   //Redirect to homepage (/timeline)
-    //   router.push("/");
-    // } else {
-    //   console.log("Error: ", response);
-    //   setError("Error while registering");
-    // }
+    if (response.status === 200) {
+      router.push("/");
+    } else {
+      setFormError("Error while registering");
+    }
     console.log(`response is ${response}`)
     // If validation is successful, you can proceed with sending the data to the server
-    console.log('Valid form data:', validatedData);
     } catch (error) {
     if (error instanceof z.ZodError) {
         // Handle validation errors
-        setValidationErrors(error.flatten());
+        const errors : { email: [], password: []} = (error.flatten()).fieldErrors;
+        setFieldErrors(errors);
     }
     }
-
   };
-return (
-    <form onSubmit={handleSubmit}>
-      <div>
-        <label htmlFor="username">First Name</label>
-        <input
-          type="text"
-          id="username"
-          name="username"
-          value={formData.firstName}
-          onChange={handleChange}
-        />
-        {validationErrors.firstName && (
-          <div className="error">{validationErrors.firstName.message}</div>
-        )}
-      </div>
-      <div>
-        <label htmlFor="lastName">Last Name</label>
-        <input
-          type="text"
-          id="lastName"
-          name="lastName"
-          value={formData.lastName}
-          onChange={handleChange}
-        />
-        {validationErrors.lastName && (
-          <div className="error">{validationErrors.lastName.message}</div>
-        )}
-      </div>
-      <div>
-        <label htmlFor="email">Email</label>
-        <input
-          type="email"
-          id="email"
-          name="email"
-          value={formData.email}
-          onChange={handleChange}
-        />
-        {validationErrors.email && (
-          <div className="error">{validationErrors.email.message}</div>
-        )}
-      </div>
-      <div>
-        <label htmlFor="password">Password</label>
-        <input
-          type="password"
-          id="password"
-          name="password"
-          value={formData.password}
-          onChange={handleChange}
-        />
-        {validationErrors.password && (
-          <div className="error">{validationErrors.password.message}</div>
-        )}
-      </div>
-      <button type="submit">Register</button>
-    </form>
-  );
+
+    // ! handle change in the values, when data in the form change, update the formData state with onChange
+  return (  
+    <form onSubmit={handleSubmit} className="space-y-10">  
+    <div>{formError}</div>
+      <div>  
+        <div>{fieldErrors['email']}</div>
+        <label>Email:</label>  
+        <input  
+          value={email}  
+          onChange={(e) => setEmail(e.target.value)}  
+          required  
+        />  
+      </div>  
+      <div>  
+        <div>{fieldErrors['password'].join(" - ")}</div>
+        <label>Password:</label>  
+        <input  
+          value={password}  
+          onChange={(e) => setPassword(e.target.value)}  
+          required  
+        ></input>  
+      </div>  
+      <button type="submit">Submit</button>  
+    </form>  
+  )  
 }
