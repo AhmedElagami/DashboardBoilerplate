@@ -84,19 +84,18 @@ const userService = {
     return user;
   },
   
-  updateUser : async ( userData: Record<string, any> ) => {
-    // Check if user already exists
+  updateUser : async ( currentUserData: Record<string, any> , body: any ) => {
 
     const data = {
-      id: userData.id,
-      firstName: userData.firstName,
-      lastName: userData.lastName,
-      email: userData.email,
-      phoneNumber: userData.phoneNumber,
-      password: userData.password,
-      points: userData.points,
-      streak: userData.streak,
-      passedDailyMission: userData.passedDailyMission,
+      id: currentUserData.id,
+      firstName: 'firstName' in body ? body['firstName'] : currentUserData.firstName,
+      lastName: 'lastName' in body ? body['lastName'] : currentUserData.lastName,
+      email:'email' in body ? body['email'] :  currentUserData.email,
+      phoneNumber: 'phoneNumber' in body ? body['phoneNumber'] : currentUserData.phoneNumber,
+      password: 'password' in  body ? body['password']: currentUserData.password,
+      points: 'points' in body ? body['points']: currentUserData.points,
+      streak:'streak' in  body ? body['streak']: currentUserData.streak,
+      passedDailyMission: 'passedDailyMission' in body ? body['passedDailyMission']:  currentUserData.passedDailyMissions
     };
 
     const updateUserQuery = `
@@ -104,13 +103,12 @@ const userService = {
       SET u = $data
       RETURN u
     `;
-
     const updatedUser = await write(updateUserQuery, { data });
     const user = updatedUser[0]?.u ?? null;
     if (user) {
       console.log(`User is updated ${user}`);
     }
-    return user;
+    return data;
 
   }
 };

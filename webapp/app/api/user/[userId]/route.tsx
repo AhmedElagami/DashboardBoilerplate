@@ -39,17 +39,8 @@ export async function PATCH  (request: NextRequest, { params }: { params: { user
                     return NextResponse.json({ message: 'User not found' }, {status: 400});
                 }
                 
-                user.firstName = body['firstName'] ? body['firstName'] : user.firstName; 
-                user.lastName = body['lastName'] ? body['lastName'] : user.lastName;
-                user.phoneNumber = body['phoneNumber'] ? body['phoneNumber'] : user.phoneNumber;
-                user.email = body['email'] ? body['email'] :  user.email;
-                user.password = body['password'] ? body['password']: user.password;
-                user.passedDailyMission = 'passedDailyMission' in body ? body['passedDailyMission']:  user.dailyMissions;
-                user.points = body['points'] ? body['points']: user.points;
-                user.streak = body['streak'] ? body['streak']: user.streak;
-                
-                const newUser = userService.updateUser(user);
-                return NextResponse.json(user, {status: 200});
+                const newUser = await userService.updateUser(user, body );
+                return NextResponse.json(newUser, {status: 200});
             } catch (error) {
                 console.error('Error fetching user:', error);
                 return NextResponse.json({ message: 'Internal Server Error' }, {status: 500});
