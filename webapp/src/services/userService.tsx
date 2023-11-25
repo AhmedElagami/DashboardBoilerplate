@@ -5,7 +5,7 @@ import { getNeo4jSession, read, write } from '../utils/neo4j';
 import { v4 as uuidv4 } from 'uuid';
 
 type User = {
-  userId: string
+  id: string
   firstName: string
   lastName: string
   email: string
@@ -58,7 +58,7 @@ const userService = {
     }
 
     const data = {
-      userId: uuidv4(),
+      id: uuidv4(),
       firstName: userData.firstName,
       lastName: userData.lastName,
       email: userData.email,

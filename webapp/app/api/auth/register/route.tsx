@@ -11,6 +11,7 @@ export const registrationSchema = z.object({
 export async function POST(request: Request) {
   try {
     const jsonRequest = await request.json();
+    console.log("The request is:", jsonRequest)
     const validatedData = await registrationSchema.parse(jsonRequest); console.log("Validated Data is ", validatedData)
 
     // validate email and password

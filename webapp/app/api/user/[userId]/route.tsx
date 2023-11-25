@@ -5,7 +5,7 @@ import {NextRequest, NextResponse} from "next/server";
 export async function GET (request: NextRequest, { params }: { params: { userId: string } }){
     // Get userId parameter
     const { userId } = params;
-
+    
     if (typeof userId === 'string') {
         try {
             const user = await userService.findUserById(userId);
