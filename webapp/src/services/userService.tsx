@@ -5,6 +5,7 @@ import { getNeo4jSession, read, write } from '../utils/neo4j';
 import { v4 as uuidv4 } from 'uuid';
 
 type User = {
+  userId: string
   firstName: string
   lastName: string
   email: string
@@ -56,13 +57,25 @@ const userService = {
       return null;
     }
 
+    const data = {
+      userId: uuidv4(),
+      firstName: userData.firstName,
+      lastName: userData.lastName,
+      email: userData.email,
+      phoneNumber: userData.phoneNumber,
+      password: userData.password,
+      points: 10,
+      streak: 0,
+      passedDailyMission: false,
+    };
+
     // If user does not exist, create a new user
     const createUserQuery = `
-      CREATE (u:User $userData)
+      CREATE (u:User $data)
       RETURN u
     `;
 
-    const newUser = await write(createUserQuery, { userData });
+    const newUser = await write(createUserQuery, { data });
     const user = newUser[0]?.u ?? null;
 
     if (user) {
