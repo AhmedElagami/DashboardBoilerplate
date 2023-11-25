@@ -69,11 +69,11 @@ const userService = {
       passedDailyMission: false,
     };
 
-    // If user does not exist, create a new user
     const createUserQuery = `
       CREATE (u:User $data)
       RETURN u
     `;
+
 
     const newUser = await write(createUserQuery, { data });
     const user = newUser[0]?.u ?? null;
@@ -83,7 +83,36 @@ const userService = {
     }
     return user;
   },
+  
+  updateUser : async ( userData: Record<string, any> ) => {
+    // Check if user already exists
 
+    const data = {
+      id: userData.id,
+      firstName: userData.firstName,
+      lastName: userData.lastName,
+      email: userData.email,
+      phoneNumber: userData.phoneNumber,
+      password: userData.password,
+      points: userData.points,
+      streak: userData.streak,
+      passedDailyMission: userData.passedDailyMission,
+    };
+
+    const updateUserQuery = `
+      MATCH (u:User {id: $data.id})
+      SET u = $data
+      RETURN u
+    `;
+
+    const updatedUser = await write(updateUserQuery, { data });
+    const user = updatedUser[0]?.u ?? null;
+    if (user) {
+      console.log(`User is updated ${user}`);
+    }
+    return user;
+
+  }
 };
 
 export default userService;
