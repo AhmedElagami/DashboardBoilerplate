@@ -96,24 +96,8 @@ A platform for users to share their own content, like blogs or videos.
 - The database is created using Neo4j.  
 - The API is implemented using Next.js built on React.js
 ## Database Design
-### Model
+### Neo4j Modeling
 ![](./Features-7.png)
 
-### Entities
 
-#### User
-#### Comment
-#### Media
-
-#### MediaSession
-#### Game
-#### GameSession
-
-
-
-
-### Relationships 
-
-## API
-### Endpoints
 
