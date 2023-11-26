@@ -2,6 +2,9 @@
 
 ![](./img/YouthConnect1.png)
 
+## Full Interface
+![](./img/YouthConnect.png)
+
 ## Main Idea
 
 **The main idea of the application is that the user can play games, listen to songs and watch movies to get rewards to redeem with items in the store. This encourages the user to use the telecom application even more.**
@@ -45,7 +48,7 @@ Show media content like movies and series for the user.
 ![](./img/MediaTrending.png)
 
 ### Shows
-![](./img/MediaShows.png]
+![](./img/MediaShows.png)
 
 ### Music
 ![](./img/MediaMusic.png)
@@ -60,10 +63,12 @@ Show media content like movies and series for the user.
 ### **Missions:**
 - Users participate in challenges to earn extra points.
 	- **Challenges:** An engaging section with progress bars, achievement badges, and interactive challenges.
+
 ![](./img/Missions.png)
 
 ### **Leaderboard:**
 Highlighting active community members.
+
 ![](./img/leaderboard.png)
 
 ### **Notifications:** 
@@ -74,15 +79,15 @@ Highlighting active community members.
 ### **Events Page**: 
 A page where the user can see a lot of event nearby
 
-![](./EventsPage(1).png)
+![](./img/EventsPage-1.png)
 
-![](./EventsPage.png)
+![](./img/EventsPage.png)
 
 ### **Forums:**
 A platform for users to share their own content, like blogs or videos.
 
 ![](./img/ForumsPage.png)
-![](img/ForumsPage(1).png)
+![](./img/ForumsPage-1.png)
 
 
 
@@ -92,7 +97,7 @@ A platform for users to share their own content, like blogs or videos.
 - The API is implemented using Next.js built on React.js
 ## Database Design
 ### Model
-![](Features-7.png)
+![](./img/Features-7.png)
 
 ### Entities
 
