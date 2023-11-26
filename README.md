@@ -1,6 +1,7 @@
 # `YouthConnect` Telecom Rewards and Loyalty Platform
 
-![[YouthConnect.png]]
+![](./img/YouthConnect1.png)
+
 ## Main Idea
 
 **The main idea of the application is that the user can play games, listen to songs and watch movies to get rewards to redeem with items in the store. This encourages the user to use the telecom application even more.**
@@ -10,7 +11,7 @@
 ## Pages
 
 ### Launch Page
-![[Launch Page (2).png]]
+![](./img/LaunchPage.png)
 
 ### **Home Dashboard:**
 Displays current points, recent activities, and personalized content.
@@ -21,62 +22,67 @@ Displays current points, recent activities, and personalized content.
 - Here the user can see top status bar of the user current progress as in points and streaks. a progress bar for the streaks from 1 to 30. 
 - Here the user can see Recently Played
 
-![[Home.png]]
+![](../img/Home.png)
 
 ### **Profile and Settings Page:** 
 - **Profile and Settings:** Intuitive navigation and easy access to customization options.
 - Users earn points for using telecom services, like data usage, call minutes, etc. Where users can customize their preferences, manage account settings, etc.
 - **Points System and Rewards Catalogue:** A gamified interface with interactive elements for browsing and redeeming rewards.
 
-![[About Profile (1).png]]
+![](./img/AboutProfile.png)
 
 
 ### **Game Page**: 
 A page where users can see games they can play and get points to redeem. 
 
-![[GamePage.png]]
+![](./img/GamePage.png)
 
 
 ### **Media Page**:
 Show media content like movies and series for the user. 
 
 #### Trending
-![[Media Trending.png]]
+![](./img/MediaTrending.png)
 
 ### Shows
-![[Media Shows.png]]
+![](./img/MediaShows.png]
 
 ### Music
+![](./img/MediaMusic.png)
 
-![[Media Music (1).png]]
 ### Media Player Page
-![[Music Player Screen.png]]
+![](../MusicPlayerScreen.png)
+
 ### **Store:**
 - A section where users can browse and redeem points for rewards like data packs, call minutes, merchandise, etc.
-![[Store Page.png]]
+[](./img/StorePage.png)
+
 ### **Missions:**
 - Users participate in challenges to earn extra points.
 	- **Challenges:** An engaging section with progress bars, achievement badges, and interactive challenges.
-![[Missions.png]]
+![](./img/Missions.png)
+
 ### **Leaderboard:**
 Highlighting active community members.
-![[leader board.png]]
+![](./img/leaderboard.png)
+
 ### **Notifications:** 
 - Alerts for new rewards, challenges, or special offers.
 - **Notifications:** Non-intrusive yet noticeable alerts.
-![[Notification.png]]
+  [](./img/Notification.png)
+  
 ### **Events Page**: 
 A page where the user can see a lot of event nearby
 
-![[EventsPage (1).png]]
-![[EventsPage.png]]
+![](./EventsPage(1).png)
+
+![](./EventsPage.png)
+
 ### **Forums:**
 A platform for users to share their own content, like blogs or videos.
 
-
-![[Forums Page.png]]
-
-![[Forums Page (1).png]]
+![](./img/ForumsPage.png)
+![](img/ForumsPage(1).png)
 
 
 
@@ -86,7 +92,7 @@ A platform for users to share their own content, like blogs or videos.
 - The API is implemented using Next.js built on React.js
 ## Database Design
 ### Model
-![[Features-7.png]]
+![](Features-7.png)
 
 ### Entities
 
