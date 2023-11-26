@@ -97,7 +97,7 @@ A platform for users to share their own content, like blogs or videos.
 - The API is implemented using Next.js built on React.js
 ## Database Design
 ### Model
-![](./img/Features-7.png)
+![](./Features-7.png)
 
 ### Entities
 
