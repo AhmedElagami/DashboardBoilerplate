@@ -207,8 +207,8 @@ A platform for users to share their own content, like blogs or videos.
 46. **DELETE /forums/posts/{postID}
 
 # Skteches
-![](../img/sketch1.png)
-![](../img/sketch2.png)
+![](./img/sketch1.png)
+![](./img/sketch2.png)
 
 
 
